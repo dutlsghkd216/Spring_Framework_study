@@ -3,8 +3,10 @@ package com.example.ex02.controller;
 import java.util.Calendar;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import lombok.extern.log4j.Log4j;
 
@@ -54,4 +56,42 @@ public class ExampleController {
 		}
 		return "work/work";
 	}
+	
+// 상품의 바코드를 입력받고 해당 상품명을 출력한다.
+//	오징어 땅콩 -438927
+//	초코 우유 - 0832147
+//	벌꿀 피자 - 9841631
+//	샌드위치 - 5587578
+	
+	@GetMapping("market")
+	public String goMarket() {
+		return "market/market";
+	}
+	
+	@PostMapping("/cashier")
+	public String getProduct(String barcode, Model model) {
+		String productName = null;
+		
+		switch(barcode) {
+		case "4383927":
+			productName="오징어 땅콩";
+			break;
+		case "0832147":
+			productName="초코 우유";
+			break;
+		case "9841631":
+			productName="벌꿀 피자";
+			break;
+		case "5587578":
+			productName="샌드위치";
+			break;
+		default:
+			productName="없는 상품";
+			break;
+		}
+		model.addAttribute("productName", productName);
+		return "/market/cashier";
+	}
+	
+	
 }
