@@ -127,4 +127,23 @@ public class ExampleController {
 		return "product/showChange";
 	}
 	
+	@PostMapping("/usePoint")
+	public String usePoint(@ModelAttribute("product") Product product) {
+		return "product/usePoint";
+	}
+	
+	@PostMapping("/use")
+	public String use(Product product, Integer point, Model model) {
+		int cash = product.getProductPrice()-point;
+		if(point>product.getProductPrice()) {
+			point = product.getProductPrice();
+			cash=0;
+		}
+		model.addAttribute("product",product);
+		model.addAttribute("point",point);
+		model.addAttribute("cash",cash);
+		
+		return "product/payment";
+		
+	}
 }

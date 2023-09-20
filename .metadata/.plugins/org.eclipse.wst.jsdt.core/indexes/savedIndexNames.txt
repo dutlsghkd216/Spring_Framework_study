@@ -5,5 +5,4 @@ INDEX VERSION 1.4+C:\DDAZUA_SPRING\workspace\.metadata\.plugins\org.eclipse.wst.
 2695171724.index
 2740071106.index
 2357792941.index
-2695171724.index
 1188637265.index
