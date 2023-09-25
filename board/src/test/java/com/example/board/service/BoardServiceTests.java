@@ -22,22 +22,21 @@ public class BoardServiceTests {
 //	public void serivceTest() {
 //		log.info(boardService);
 //	}
-//	
+
 //	@Test
-//	public void registTest() {
+//	public void registerTest() {
 //		BoardVO boardVO = new BoardVO();
 //		boardVO.setTitle("새로 작성한 글");
 //		boardVO.setContent("새로 작성한 글 내용");
-//		boardVO.setWriter("HDE1111");
+//		boardVO.setWriter("HDE3333");
 //		
 //		boardService.register(boardVO);
-//		log.info("생성된 게시글 번호 : " +boardVO.getBno());
-//		
+//		log.info("생성된 게시글 번호 : " +boardVO.getBno());	
 //	}
 	
 //	@Test
 //	public void getTest() {
-//		BoardVO boardVO = boardService.get(9L);
+//		BoardVO boardVO = boardService.get(8L);
 //		if(boardVO != null) {
 //			log.info(boardVO);
 //			return;
@@ -47,7 +46,7 @@ public class BoardServiceTests {
 	
 //	@Test
 //	public void modifyTest() {
-//		BoardVO boardVO = boardService.get(10L);
+//		BoardVO boardVO = boardService.get(8L);
 //		if(boardVO == null) {log.info("NO BOARD"); return;}
 //		
 //		boardVO.setTitle("신규 등록");
@@ -62,7 +61,7 @@ public class BoardServiceTests {
 	
 //	@Test
 //	public void removeTest() {
-//		BoardVO boardVO = boardService.get(9L);
+//		BoardVO boardVO = boardService.get(8L);
 //		if(boardVO ==null) {log.info("NO BOARD"); return ;}
 //		
 //		if(boardService.remove(boardVO.getBno())) {
@@ -72,8 +71,9 @@ public class BoardServiceTests {
 //		log.info("REMOVE FAILURE");
 //	}
 	
-	@Test
-	public void getListTest() {
-		boardService.getList().forEach(log::info);
-	}
+//	@Test
+//	public void getListTest() {
+//		boardService.getList().forEach(log::info);
+//	}
+	
 }
