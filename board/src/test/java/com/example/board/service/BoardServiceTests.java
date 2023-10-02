@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.example.board.domain.vo.BoardVO;
+import com.example.board.domain.vo.Criteria;
 
 import lombok.extern.log4j.Log4j;
 
@@ -71,9 +71,9 @@ public class BoardServiceTests {
 //		log.info("REMOVE FAILURE");
 //	}
 	
-//	@Test
-//	public void getListTest() {
-//		boardService.getList().forEach(log::info);
-//	}
+	@Test
+	public void getListTest() {
+		boardService.getList(new Criteria()).forEach(log::info);
+	}
 	
 }

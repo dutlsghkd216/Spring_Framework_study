@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.example.board.domain.vo.BoardVO;
+import com.example.board.domain.vo.Criteria;
 import com.example.board.mapper.BoardMapper;
 
 import lombok.extern.log4j.Log4j;
@@ -40,8 +41,13 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> getList() {
-		return boardMapper.getList();
+	public List<BoardVO> getList(Criteria cirteria) {
+		return boardMapper.getList(cirteria);
+	}
+	
+	@Override
+	public int getTotal(Criteria criteria) {
+		return boardMapper.getTotal(criteria);
 	}
 
 }

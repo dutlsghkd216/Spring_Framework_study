@@ -1,7 +1,5 @@
 package com.example.board.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.board.domain.vo.BoardVO;
+import com.example.board.domain.vo.Criteria;
+import com.example.board.domain.vo.PageDTO;
 import com.example.board.service.BoardService;
 
 import lombok.extern.log4j.Log4j;
@@ -35,9 +35,10 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@GetMapping("/list")
-	public void list(Model model) {
+	public void list(Criteria criteria, Model model) {
 		log.info("/list");
-		model.addAttribute("boardList", boardService.getList());
+		model.addAttribute("boardList", boardService.getList(criteria));
+		model.addAttribute("pageDTO", new PageDTO(boardService.getTotal(criteria),criteria));
 	}
 	
 	@PostMapping("/register")	
@@ -54,7 +55,7 @@ public class BoardController {
 	}
 	
 	@GetMapping({"/read","/modify"})
-	public void read(Long bno, HttpServletRequest request, Model model) {
+	public void read(Criteria criteria, Long bno, HttpServletRequest request, Model model) {
 		String url = request.getRequestURI();
 		
 		log.info(url.substring(url.lastIndexOf("/")) + " : "+bno);
@@ -73,12 +74,15 @@ public class BoardController {
 	}
 	
 	@PostMapping("/modify")
-	public String modify(BoardVO boardVO, RedirectAttributes rttr) {
+	public String modify(Criteria criteria, BoardVO boardVO, RedirectAttributes rttr) {
 		log.info("/modify : " + boardVO);
 		if(boardService.modify(boardVO)) {
 			rttr.addFlashAttribute("result","success");
 		}
-		return "redirect:/board/list";
+//		rttr.addAttribute("pageNum", criteria.getPageNum());
+//		rttr.addAttribute("type", criteria.getType());
+//		rttr.addAttribute("keyword", criteria.getKeyword());
+		return "redirect:/board/list" + criteria.getParams();
 	}
 	
 	
